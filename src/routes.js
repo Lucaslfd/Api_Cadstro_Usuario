@@ -7,11 +7,12 @@ const user = require('./controllers/index');
 router.get('/users', user.buscarTodos);
 
 //Para Listar um Unico Usuario
-router.put('/user/:id', user.buscarUnico);
+router.get('/user/:id', user.buscarUnico);
 
 //Para Adicionar novo Usuario
 router.post('/user', user.inserir);
 
-
+// Alterar usuario
+router.put('/user/:id', user.alterar)
 
 module.exports = router;

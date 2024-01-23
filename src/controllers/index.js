@@ -1,4 +1,3 @@
-const { response } = require('express');
 const userServices = require('../services/index');
 
 module.exports = {
@@ -29,6 +28,7 @@ module.exports = {
     response.json(json);
   },
 
+  //Para Inserir um usuario
   inserir: async (requi, response) => {
     let json = {error: '', result: {}};
     let nome = requi.body.nome;
@@ -39,6 +39,28 @@ module.exports = {
       let userId = await userServices.inserir(nome, email, senha);
       json.result = {
         id: userId,
+        nome,
+        email,
+        senha
+      };
+    } else {
+      json.error = "Campos nao enviados"
+    }
+    response.json(json);
+  },
+
+  // Alterar usuario
+  alterar: async (requi, response) => {
+    let json = {error: '', result: {}};
+    let id = requi.params.id;
+    let nome = requi.body.nome;
+    let email = requi.body.email;
+    let senha = requi.body.senha;
+    
+    if(id && nome && email && senha){
+      await userServices.alterar(id, nome, email, senha);
+      json.result = {
+        id,
         nome,
         email,
         senha

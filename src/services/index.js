@@ -32,5 +32,14 @@ module.exports = {
         aceito(results.insertUser);
       });
     });
+  },
+
+  alterar: (id, nome, email, senha) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('UPDATE users SET nome=?, email=?, senha=? WHERE id=?',[nome, email, senha, id],(error, results) => {
+        if(error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
   }
 };
