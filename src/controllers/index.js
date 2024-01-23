@@ -69,5 +69,12 @@ module.exports = {
       json.error = "Campos nao enviados"
     }
     response.json(json);
+  },
+
+  // Excluir um Usuario
+  excluir: async (requi, response) => {
+    let json = {error: '', result: {}};
+    await userServices.excluir(requi.params.id);
+    response.json(json);
   }
 }

@@ -3,16 +3,20 @@ const router = express.Router();
 
 const user = require('./controllers/index');
 
-//Para Listar todos os Usuarios
+// Para Listar todos os Usuarios
 router.get('/users', user.buscarTodos);
 
-//Para Listar um Unico Usuario
+// Para Listar um Unico Usuario
 router.get('/user/:id', user.buscarUnico);
 
-//Para Adicionar novo Usuario
+// Para Adicionar novo Usuario
 router.post('/user', user.inserir);
 
 // Alterar usuario
 router.put('/user/:id', user.alterar)
+
+// Excluir um Usuario
+router.delete('/user/:id', user.excluir)
+
 
 module.exports = router;
